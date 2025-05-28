@@ -1,27 +1,21 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = "master",
-        build = ":TSUpdate",
-        event = "BufReadPost",
-        config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = {
-                    "dockerfile",
-                    "json",
-                    "lua",
-                    "markdown",
-                    "python",
-                    "regex",
-                    "toml",
-                    "yaml",
-                },
-                sync_install = false,
-                auto_install = true,
-                highlight = { enable = true },
-                indent = { enable = true },
-            })
-        end,
+        lazy = false,
+        branch = "main",
+        build = {
+            -- Requires manual install of new parsers as this is only triggered
+            -- on nvim-treesitter update
+            ":TSInstall dockerfile",
+            ":TSInstall json",
+            ":TSInstall lua",
+            ":TSInstall markdown",
+            ":TSInstall python",
+            ":TSInstall regex",
+            ":TSInstall toml",
+            ":TSInstall yaml",
+            ":TSUpdate",
+        },
     },
     {
         "nvim-treesitter/nvim-treesitter-context",

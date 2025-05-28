@@ -6,7 +6,6 @@ return {
             vim.opt.runtimepath:prepend(
                 require("lazy.core.config").options.root .. "/nvim-lspconfig"
             )
-
             vim.lsp.enable({
                 "basedpyright",
                 "biome",
@@ -22,9 +21,11 @@ return {
         "mason-org/mason.nvim",
         cmd = { "Mason" },
         init = function()
+            -- No need to load the plugin, since we just want the binaries
             vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. ":" .. vim.env.PATH
         end,
         opts = {
+            -- Requires to launch `:Mason` since we only add bin path at init
             ensure_installed = {
                 -- lsp
                 "basedpyright",
